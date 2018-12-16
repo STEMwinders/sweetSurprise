@@ -81,6 +81,37 @@ function gameOver (winner) {
   setUp()
 }
 
+//line 130
+function scoreUp(update) {
+  me = me + update
+  you = you - update
+  scoreMe.change (me)
+  scoreYou.change (you)
+  if me (me==playTo) {
+    gameOver (true)
+  }
+  if (you==playTo) {
+    gameOver (false)
+  }
+}
+function fireOver () {
+  send(["attack",shotStamp, z.x])
+}
+function defend() {
+  if (myTurn) {
+    swap ()
+  }
+}
+function swap() {
+  if (myTurn) {
+    myTurn = false
+    hero.change (catchStamp)
+  } else {
+    myTurn = true
+    hero.change (canonStamp)
+  }
+}
+
 
 
 // line 160... screen controls...
@@ -121,6 +152,49 @@ function tap() {
   }
 }
 
+//198 keyboard conrols...
+window.focus()
+addEventListener('keydown',pressing)
+addEventListener('keyup', release)
+function pressing () {
+  pressed = event.key
+  if (pressed =='ArrowUp') {
+    { facing = UP}
+    speed = moveSpeed
+  }
+  if (pressed == 'ArrowRight') {
+    { facing = RIGHT }
+    speed = moveSpeed
+  }
+  if (pressed == 'ArrowLeft') {
+    { facing = LEFT}
+speed = moveSpeed    
+  }
+  if (pressed == 'ArrowDown') {
+    { facing = DOWN}
+    speed = moveSpeed
+  }
+  if (pressed == ' ') {
+    if (gameOn) {
+      if (myTurn) {
+        sound (shootSound)
+        z = stamp (shotStamp,hero.x,(hero.y-130),100)
+        z.move(UP,1000,shotSpeed)
+        delay(fireOver,1500)
+        delay(defend,2000)
+      } else {
+        swap ()
+      }
+    }
+  }
+  if (pressed == 'Enter') {
+    send (["start"])
+    startUp()
+  }
+}
+function release() {
+  speed = 0
+}
 
 
 
