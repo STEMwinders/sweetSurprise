@@ -38,6 +38,31 @@ finalSound = 'mario'
 youWin = 'You Win!'
 youLose = 'You Lose...'
 
+
+//line 60... game time events...
+function setUp() {  
+  hero.change(canonStamp)
+  startBtn.change(startBtn2) 
+  startBtn.show()
+  gameOn = false
+  me = 0
+  you = 0
+  myTurn = true
+  speed = 0
+  shots = []
+  facing = UP
+}
+function startUp() {
+  sound(startSound, 50)
+  finalWin.hide()
+  finalLose.hide()
+  scoreUp(0)
+  startBtn.change(startBtn1)
+  initialText.change("It's on!")
+  initialText.x = 260
+  delay(begin, 1500)
+}
+
 //line...84
 function begin() {
   startBtn.hide()
