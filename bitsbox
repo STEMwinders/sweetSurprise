@@ -58,6 +58,44 @@ function gameOver (winner) {
 
 
 
+// line 160... screen controls...
+function touching() {
+ if(gameOn) {
+  if (x,190 && y > 830) {
+    if (x < 80) { facing = LEFT }
+    if (x > 130) { facing = RIGHT }
+    if (y < 910) { facing = UP }
+    if (y> 950) { facing = DOWN }
+    speed = moveSpeed
+  }
+ }
+}
+function untouch() {
+  speed =0
+}
+function tap() {
+  if (gameOn) {
+    if (myTurn) {
+        if (x > 620 && y > 880) {
+        sound(shootSound)
+        z = stamp(shotStamp,hero.x,(hero.y-130),100)
+        z.move(UP,1000,shotSpeed)
+         delay(fireOver,1500)
+         delay(defend,2000)
+        }
+    }else {
+     if (x > 620 && y > 880) {
+       swap()
+     }
+    }
+  }else {
+    if (x > 300 && x < 475 && y > 250 && y 430) {
+      send(["start"])
+      startUp()
+    }
+  }
+}
+
 
 
 
