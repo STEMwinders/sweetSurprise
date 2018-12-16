@@ -81,6 +81,33 @@ function gameOver (winner) {
   setUp()
 }
 
+//line 103 ... game actions...
+function stayInPlay() {
+  newX = Math.max(39,hero.x)
+  newX = Math.min(735,newX)
+  newY = Math.max(160,hero.y)
+  newY = Math.min(738,newY)
+  hero.move(newX,newY)
+}
+function score(shot, index) {
+  if (!myTurn) {
+    if (shot.hits(hero)) {
+      shot.splash()
+      sound(catchSound)
+      shots.splice(index, 1)
+      send(["score", -1])
+      scoreUp(1)
+    }
+  }
+  if (shot.y > 875) {
+    sound(hitSound)
+    shot.burn()
+    shots.splice(index, 1)
+    send(["score", 1])
+    scoreUp(-1)
+  }
+}
+
 //line 130
 function scoreUp(update) {
   me = me + update
