@@ -38,6 +38,24 @@ finalSound = 'mario'
 youWin = 'You Win!'
 youLose = 'You Lose...'
 
+//line 41 ... change with care...
+finalWin = text('', 165, 200, 125, 'green')
+finalWin.hide()
+finalWin.change(youWin)
+finalLose = text('', 105, 200, 125, 'red')
+finalLose.hide()
+finalLose.change(youLose)
+hero = stamp(canonStamp, 380, 730, 180)
+controller = stamp('controller2',390,960)
+stamp('scoreboard', 380, 960, 300)
+initialText = text('Are you ready?', 65, 200, 100, 'green')
+startBtn = stamp(startBtn2, 390, 350, 200)
+me = 0
+you = 0
+scoreMe = text(me, 275, 980, 75, 'green')
+scoreYou = text(you, 405, 980, 75, 'red')
+shots = []
+setUp()
 
 //line 60... game time events...
 function setUp() {  
@@ -63,21 +81,22 @@ function startUp() {
   delay(begin, 1500)
 }
 
-//line...84
 function begin() {
   startBtn.hide()
-  intialText.hide()
+  initialText.hide()
   gameOn = true
 }
-function gameOver (winner) {
-  sound (finalSound)
+function gameOver(winner) {
+  sound(finalSound)
   if (winner) {
     finalWin.show()
+  } else {
+    finalLose.show()
   }
   while (shots.length > 0) {
     cleanMe=shots.pop()
     cleanMe.hide()
-  }
+  }  
   setUp()
 }
 
