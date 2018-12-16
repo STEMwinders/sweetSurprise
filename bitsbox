@@ -3,7 +3,24 @@
 
 
 
-
+//line 22 here's what you can change...
+canonStamp = '@shooter' //@cannon2, cannon, congadrum
+catchStamp = 'milk' //milk, chocolatemilk
+fill('snowy2')
+shotStamp = 'christmascookie3' //christmascookie 1-
+startBtn1 = 'button1'
+startBtn2 = 'button2'
+playTo = 10
+moveSpeed = 10
+shotSpeed = 2000
+startSound = 'mrfancy'
+shootSound = 'kick' //bang, bam
+incomingSound ='pop' //pellet
+catchSound = 'splash'
+hitSound = 'force'
+finalSound = 'mario'
+youWin = 'You Win!'
+youLose = 'You Lose...'
 
 //line...84
 function begin() {
