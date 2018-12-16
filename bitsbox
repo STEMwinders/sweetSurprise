@@ -157,9 +157,6 @@ function swap() {
     hero.change (canonStamp)
   }
 }
-
-
-
 // line 160... screen controls...
 function touching() {
  if(gameOn) {
@@ -241,8 +238,6 @@ speed = moveSpeed
 function release() {
   speed = 0
 }
-
-
 
 //242 game play...
 function loop() {
