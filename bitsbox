@@ -1,7 +1,7 @@
 //receive msg from other player...
 function get(shot) {
   if (gameOn) {
-    if(shot[0]=="attack") {
+    if (shot[0]=="attack") {
       if(myTurn) {
         swap()
       }
@@ -19,11 +19,11 @@ function get(shot) {
   }
 }
 
-//line 22 here's what you can change...
+//here's what you can change...
 canonStamp = '@shooter' //@cannon2, cannon, congadrum
 catchStamp = 'milk' //milk, chocolatemilk
 fill('snowy2')
-shotStamp = 'christmascookie3' //christmascookie 1-
+shotStamp = 'christmascookie3' //christmascookie 1- 
 startBtn1 = 'button1'
 startBtn2 = 'button2'
 playTo = 10
@@ -31,14 +31,14 @@ moveSpeed = 10
 shotSpeed = 2000
 startSound = 'mrfancy'
 shootSound = 'kick' //bang, bam
-incomingSound ='pop' //pellet
+incomingSound = 'pop' //pellet
 catchSound = 'splash'
 hitSound = 'force'
 finalSound = 'mario'
 youWin = 'You Win!'
 youLose = 'You Lose...'
 
-//line 41 ... change with care...
+//change with care...
 finalWin = text('', 165, 200, 125, 'green')
 finalWin.hide()
 finalWin.change(youWin)
@@ -57,10 +57,10 @@ scoreYou = text(you, 405, 980, 75, 'red')
 shots = []
 setUp()
 
-//line 60... game time events...
-function setUp() {  
+//game time events...
+function setUp() {
   hero.change(canonStamp)
-  startBtn.change(startBtn2) 
+  startBtn.change(startBtn2)
   startBtn.show()
   gameOn = false
   me = 0
@@ -100,7 +100,7 @@ function gameOver(winner) {
   setUp()
 }
 
-//line 103 ... game actions...
+//game actions...
 function stayInPlay() {
   newX = Math.max(39,hero.x)
   newX = Math.min(735,newX)
@@ -127,82 +127,82 @@ function score(shot, index) {
   }
 }
 
-//line 130
 function scoreUp(update) {
   me = me + update
   you = you - update
-  scoreMe.change (me)
-  scoreYou.change (you)
-  if me (me==playTo) {
-    gameOver (true)
+  scoreMe.change(me)
+  scoreYou.change(you)
+  if (me==playTo) {
+    gameOver(true)
   }
   if (you==playTo) {
-    gameOver (false)
+    gameOver(false)
   }
 }
-function fireOver () {
-  send(["attack",shotStamp, z.x])
+function fireOver() {
+  send(["attack", shotStamp, z.x])
 }
 function defend() {
   if (myTurn) {
-    swap ()
+    swap()
   }
 }
 function swap() {
   if (myTurn) {
-    myTurn = false
-    hero.change (catchStamp)
+    myTurn=false
+    hero.change(catchStamp)
   } else {
-    myTurn = true
-    hero.change (canonStamp)
+    myTurn=true
+    hero.change(canonStamp)
   }
 }
-// line 160... screen controls...
+
+//screen controls...
 function touching() {
- if(gameOn) {
-  if (x,190 && y > 830) {
-    if (x < 80) { facing = LEFT }
-    if (x > 130) { facing = RIGHT }
-    if (y < 910) { facing = UP }
-    if (y> 950) { facing = DOWN }
-    speed = moveSpeed
+  if (gameOn) {
+    if (x < 190 && y > 830) {
+      if (x < 80)  { facing = LEFT }
+      if (x > 130) { facing = RIGHT } 
+      if (y < 910) { facing = UP }
+      if (y > 950) { facing = DOWN }
+      speed = moveSpeed
+    }
   }
- }
 }
 function untouch() {
-  speed =0
+  speed = 0 
 }
 function tap() {
   if (gameOn) {
-    if (myTurn) {
-        if (x > 620 && y > 880) {
+    if(myTurn) {
+      if (x > 620 && y > 880) {
         sound(shootSound)
         z = stamp(shotStamp,hero.x,(hero.y-130),100)
         z.move(UP,1000,shotSpeed)
-         delay(fireOver,1500)
-         delay(defend,2000)
-        }
-    }else {
-     if (x > 620 && y > 880) {
-       swap()
-     }
+        delay(fireOver, 1500)
+        delay(defend, 2000)
+      }
+    } else {
+      if (x > 620 && y > 880) {
+          swap()
+      }
     }
-  }else {
-    if (x > 300 && x < 475 && y > 250 && y 430) {
+  } else {
+    if (x > 300 && x < 475 && y > 250 && y < 430) {
       send(["start"])
       startUp()
     }
   }
 }
 
-//198 keyboard conrols...
+//keyboard controls...
 window.focus()
-addEventListener('keydown',pressing)
+addEventListener('keydown', pressing)
 addEventListener('keyup', release)
-function pressing () {
+function pressing() {
   pressed = event.key
-  if (pressed =='ArrowUp') {
-    { facing = UP}
+  if (pressed == 'ArrowUp') {
+    { facing = UP }
     speed = moveSpeed
   }
   if (pressed == 'ArrowRight') {
@@ -210,28 +210,28 @@ function pressing () {
     speed = moveSpeed
   }
   if (pressed == 'ArrowLeft') {
-    { facing = LEFT}
-speed = moveSpeed    
+    { facing = LEFT }
+    speed = moveSpeed
   }
   if (pressed == 'ArrowDown') {
-    { facing = DOWN}
+    { facing = DOWN }
     speed = moveSpeed
   }
   if (pressed == ' ') {
     if (gameOn) {
-      if (myTurn) {
-        sound (shootSound)
-        z = stamp (shotStamp,hero.x,(hero.y-130),100)
+      if(myTurn) {
+        sound(shootSound)
+        z = stamp(shotStamp,hero.x,(hero.y-130),100)
         z.move(UP,1000,shotSpeed)
-        delay(fireOver,1500)
-        delay(defend,2000)
+        delay(fireOver, 1500)
+        delay(defend, 2000)
       } else {
-        swap ()
+        swap()
       }
     }
   }
   if (pressed == 'Enter') {
-    send (["start"])
+    send(["start"])
     startUp()
   }
 }
@@ -239,11 +239,11 @@ function release() {
   speed = 0
 }
 
-//242 game play...
+//game play...
 function loop() {
   hero.move(facing,speed)
   stayInPlay()
   for (x=0;x<shots.length;x++) {
-    score (shots[x], x)
-  }
+    score(shots[x], x)
+  } 
 }
