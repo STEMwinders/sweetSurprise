@@ -1,7 +1,23 @@
 //receive msg from other player...
-
-
-
+function get(shot) {
+  if (gameOn) {
+    if(shot[0]=="attack") {
+      if(myTurn) {
+        swap()
+      }
+      sound(incomingSound)
+      incoming = stamp(shot[1], shot[2], 5, 100)
+      incoming.move(DOWN, 1000, shotSpeed)
+      shots.push(incoming)
+    }
+    if (shot[0]=="score") {
+      scoreUp(shot[1])
+    }
+  }
+  if (shot[0]=="start") {
+    startUp()
+  }
+}
 
 //line 22 here's what you can change...
 canonStamp = '@shooter' //@cannon2, cannon, congadrum
