@@ -1,1 +1,38 @@
 //receive msg from other player...
+
+
+
+
+
+
+//line...84
+function begin() {
+  startBtn.hide()
+  intialText.hide()
+  gameOn = true
+}
+function gameOver (winner) {
+  sound (finalSound)
+  if (winner) {
+    finalWin.show()
+  }
+  while (shots.length > 0) {
+    cleanMe=shots.pop()
+    cleanMe.hide()
+  }
+  setUp()
+}
+
+
+
+
+
+
+//242 game play...
+function loop() {
+  hero.move(facing,speed)
+  stayInPlay()
+  for (x=0;x<shots.length;x++) {
+    score (shots[x], x)
+  }
+}
